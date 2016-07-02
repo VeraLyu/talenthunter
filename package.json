@@ -1,0 +1,31 @@
+{
+  "name": "talent-hunter",
+  "version": "1.0.0",
+  "description": "An integrated IT talents search engine",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "clean": "rimraf dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VeraLyu/talent-hunter.git"
+  },
+  "keywords": [
+    "react",
+    "bootstrap"
+  ],
+  "author": "Vera Lyu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/VeraLyu/talent-hunter/issues"
+  },
+  "homepage": "https://github.com/VeraLyu/talent-hunter#readme"
+}

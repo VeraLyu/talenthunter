@@ -1,5 +1,5 @@
 module.exports = {
-    entry: "./js/main.js",
+    entry: "./js/components/main.js",
     output: {
         publicPath: "/dist/",
         path: __dirname + "/dist",

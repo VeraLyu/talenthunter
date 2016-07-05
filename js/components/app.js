@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import {SearchForm} from './searchform.js'
+import SearchForm from '../container/searchform.js'
 import {SearchResults} from './searchresults.js'
 
 
@@ -10,19 +10,16 @@ export class App extends Component {
         this.state = {hotTopic: "c++"};
     }
 
-    handleFormSubmit(event) {
-        event.preventDefault();
-    }
-    inputStateChange() {
-
-    }
     render () {
         return (
             <div>
-                <SearchForm
-                    handleFormSubmit={this.handleFormSubmit} hotTopic={this.state.hotTopic}></SearchForm>
+                <SearchForm hotTopic={this.state.hotTopic}></SearchForm>
                 <SearchResults></SearchResults>
             </div>
         );
     }
+}
+
+App.propTypes = {
+    hotTopic: React.PropTypes.string
 }

@@ -7,9 +7,16 @@ export class KeywordInput extends Component {
 		return (
 			<div>
 				<label htmlFor="key_word">Keywords</label>
-				{this.props.keywords.map((keyword)=>(<button value={keyword}>{keyword}</button>))}
+				{this.props.keywords.map(
+					(keyword)=>(<button value={keyword}>{keyword}</button>))}
 				<input id="key_word" type="text" onKeyDown={this.props.handleInputChange} value={this.props.initValue}/>
 			</div>
 			);
 	}
+}
+
+KeywordInput.propTypes = {
+	keywords: React.PropTypes.arrayOf(React.PropTypes.string),
+	value: React.PropTypes.string,
+	onKeyDown: React.PropTypes.func.isRequired
 }

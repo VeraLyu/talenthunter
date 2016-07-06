@@ -1,37 +1,33 @@
-import * as urlconst from "../helper/urlconst" 
+import * as urlconst from '../helper/urlconst';
 
 const defaultURLParam = {
-    GITHUB_REPO: {
-        'keyword':'',
-        "q": {
-            "in": "name,description",
-            "size": ">50",
-            "forks": ">10",
-        },
-        "sort": "stars",
-        "order": "desc"
-    }
-}
+  GITHUB_REPO: {
+    keyword: '',
+    q: {
+      in: 'name,description',
+      size: '>50',
+      forks: '>10'
+    },
+    sort: 'stars',
+    order: 'desc'
+  }
+};
 
-export function formatURL(params={}, url) {
-    var urls = urlconst; // NOTE: without refering to the module name,
-                        //it will not appear in scope
-    eval("URL=urls."+url);
+export function formatURL(params = {}, url) {
+  const urls = urlconst; // Refering to the module to make it appear in scope
+  const URL = urls[url];
 
-    var params = Object.assign({}, defaultURLParam[url], params);
+  let newParams = Object.assign({}, defaultURLParam[url], params);
 
-    var formattedQ = Object.keys(defaultURLParam[url]["q"]).map((key)=>{
-        return `${key}:${defaultURLParam[url]["q"][key]}`;
-    }).join("+");
+  const formattedQ = Object.keys(defaultURLParam[url].q).map((key)=>{
+    return `${key}:${defaultURLParam[url].q[key]}`;
+  }).join('+');
 
-    var formattedOtherParams = Object.keys(defaultURLParam[url]).filter((key)=>{
-        return ["keyword", "q"].indexOf(key) == -1;
-    });
-    debugger;
-    formattedOtherParams = formattedOtherParams.map((key)=>{
-        return `${key}=${defaultURLParam[url][key]}`;
-    }).join("&");
+  const formattedOtherParams = Object.keys(defaultURLParam[url]).filter((key)=>{
+    return ['keyword', 'q'].indexOf(key) === -1;
+  }).map((key)=>{
+    return `${key}=${defaultURLParam[url][key]}`;
+  }).join('&');
 
-    URL = `${URL}?q=${params['keyword']}+${formattedQ}&${formattedOtherParams}`;
-    return URL;
+  return `${URL}?q=${newParams.keyword}+${formattedQ}&${formattedOtherParams}`;
 }

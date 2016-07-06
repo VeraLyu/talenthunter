@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {fetchGitPeople} from '../redux/actions';
+import {fetchGitPeople} from '../redux/actions/git';
 import React from 'react';
 import {Component} from 'react';
 import KeywordInput from './keywordinput';

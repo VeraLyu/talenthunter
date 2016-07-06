@@ -1,6 +1,6 @@
 import {KeywordInput} from '../components/keywordinput';
 import {connect} from 'react-redux';
-import {addKeyword} from '../redux/actions';
+import {addKeyword} from '../redux/actions/keywords';
 
 
 const mapStateToProps = (state) => ({

@@ -1,4 +1,6 @@
 import * as urlconst from '../helper/urlconst';
+import Immutable from 'immutable';
+
 
 const defaultURLParam = {
   GITHUB_REPO: {
@@ -10,24 +12,39 @@ const defaultURLParam = {
     },
     sort: 'stars',
     order: 'desc'
+  },
+  GITUSR_INFO: {
+    keyword: '',
+    q: {
+      repos: '*',
+      type: 'user'
+    },
+    sort: 'followers',
+    order: 'desc'
   }
 };
 
-export function formatURL(params = {}, url) {
+export function formatSearchURL(params = {}, url) {
+  debugger;
   const urls = urlconst; // Refering to the module to make it appear in scope
   const URL = urls[url];
 
-  let newParams = Object.assign({}, defaultURLParam[url], params);
+  let defaultParam = Immutable.fromJS(defaultURLParam[url]);
+  let newParams = defaultParam.mergeDeep(params).toJS();
 
-  const formattedQ = Object.keys(defaultURLParam[url].q).map((key)=>{
-    return `${key}:${defaultURLParam[url].q[key]}`;
+  const formattedQ = Object.keys(newParams.q).map((key)=>{
+    return `${key}:${(newParams.q)[key]}`;
   }).join('+');
 
-  const formattedOtherParams = Object.keys(defaultURLParam[url]).filter((key)=>{
+  const formattedOtherParams = Object.keys(newParams).filter((key)=>{
     return ['keyword', 'q'].indexOf(key) === -1;
   }).map((key)=>{
-    return `${key}=${defaultURLParam[url][key]}`;
+    return `${key}=${newParams[key]}`;
   }).join('&');
 
   return `${URL}?q=${newParams.keyword}+${formattedQ}&${formattedOtherParams}`;
+}
+
+export function formatListURL(params = {}, url) {
+
 }

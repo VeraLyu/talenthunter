@@ -57,8 +57,7 @@ function keyrepomap(state = {}, action) {
     let tmp = {};
     if (Object.keys(state).includes(action.key)) {
       tmp[action.key] = [...state[action.key], action.id];
-    }
-    else {
+    } else {
       tmp[action.key] = [action.id];
     }
     return Object.assign(state, tmp);

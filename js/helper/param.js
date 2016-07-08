@@ -12,20 +12,10 @@ const defaultURLParam = {
     },
     sort: 'stars',
     order: 'desc'
-  },
-  GITUSR_INFO: {
-    keyword: '',
-    q: {
-      repos: '*',
-      type: 'user'
-    },
-    sort: 'followers',
-    order: 'desc'
   }
 };
 
 export function formatSearchURL(params = {}, url) {
-  debugger;
   const urls = urlconst; // Refering to the module to make it appear in scope
   const URL = urls[url];
 
@@ -45,6 +35,6 @@ export function formatSearchURL(params = {}, url) {
   return `${URL}?q=${newParams.keyword}+${formattedQ}&${formattedOtherParams}`;
 }
 
-export function formatListURL(params = {}, url) {
-
+export function formatListUsrURL(repo) {
+  return `${repo.url}/contributors`;
 }

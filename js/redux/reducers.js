@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
-import {ADD_REPO, ADD_REPO_KEY_MAP} from './actions/git';
+import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE} from './actions/git';
 
 
 /*
@@ -39,6 +39,32 @@ import {ADD_REPO, ADD_REPO_KEY_MAP} from './actions/git';
   }
 */
 
+function talents(state = {}, action) {
+  switch (action.type) {
+  case ADD_PEOPLE:
+    let tmp = {};
+    tmp[action.id] = action.info;
+    return Object.assign(state, tmp);
+  default:
+    return state;
+  }
+}
+/*
+function repotalentmap(state = {}, action) {
+  switch (action.type) {
+  case ADD_REPO_KEY_MAP:
+    let tmp = {};
+    if (Object.keys(state).includes(action.key)) {
+      tmp[action.key] = [...state[action.key], action.id];
+    } else {
+      tmp[action.key] = [action.id];
+    }
+    return Object.assign(state, tmp);
+  default:
+    return state;
+  }
+}
+*/
 function repos(state = {}, action) {
   switch (action.type) {
   case ADD_REPO:
@@ -49,7 +75,6 @@ function repos(state = {}, action) {
     return state;
   }
 }
-
 
 function keyrepomap(state = {}, action) {
   switch (action.type) {
@@ -87,7 +112,8 @@ function keywords(state = [], action) {
 const talentSearchApp = combineReducers({
   keywords,
   keyrepomap,
-  repos
+  repos,
+  talents
 });
 
 export default talentSearchApp;

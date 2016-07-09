@@ -49,7 +49,7 @@ function talents(state = {}, action) {
     return state;
   }
 }
-/*
+
 function repotalentmap(state = {}, action) {
   switch (action.type) {
   case ADD_REPO_KEY_MAP:
@@ -64,7 +64,7 @@ function repotalentmap(state = {}, action) {
     return state;
   }
 }
-*/
+
 function repos(state = {}, action) {
   switch (action.type) {
   case ADD_REPO:
@@ -113,7 +113,8 @@ const talentSearchApp = combineReducers({
   keywords,
   keyrepomap,
   repos,
-  talents
+  talents,
+  repotalentmap
 });
 
 export default talentSearchApp;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
-import SearchForm from '../container/searchform.js';
-import {SearchResults} from './searchresults.js';
+import SearchForm from '../container/searchform';
+import SearchResults from '../container/searchresults';
 
 
 export class App extends Component {

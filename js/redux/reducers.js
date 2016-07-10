@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
-import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE} from './actions/git';
+import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
 
 
 /*
@@ -44,7 +44,7 @@ function talents(state = {}, action) {
   case ADD_PEOPLE:
     let tmp = {};
     tmp[action.id] = action.info;
-    return Object.assign(state, tmp);
+    return Object.assign({}, state, tmp);
   default:
     return state;
   }
@@ -52,14 +52,14 @@ function talents(state = {}, action) {
 
 function repotalentmap(state = {}, action) {
   switch (action.type) {
-  case ADD_REPO_KEY_MAP:
+  case ADD_REPO_PEOPLE_MAP:
     let tmp = {};
-    if (Object.keys(state).includes(action.key)) {
-      tmp[action.key] = [...state[action.key], action.id];
+    if (Object.keys(state).includes(action.repo.toString())) {
+      tmp[action.repo] = [...state[action.repo], action.id];
     } else {
-      tmp[action.key] = [action.id];
+      tmp[action.repo] = [action.id];
     }
-    return Object.assign(state, tmp);
+    return Object.assign({}, state, tmp);
   default:
     return state;
   }
@@ -70,7 +70,7 @@ function repos(state = {}, action) {
   case ADD_REPO:
     let tmp = {};
     tmp[action.id] = action.json;
-    return Object.assign(state, tmp);
+    return Object.assign({}, state, tmp);
   default:
     return state;
   }
@@ -85,7 +85,7 @@ function keyrepomap(state = {}, action) {
     } else {
       tmp[action.key] = [action.id];
     }
-    return Object.assign(state, tmp);
+    return Object.assign({}, state, tmp);
   default:
     return state;
   }

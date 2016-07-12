@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
 import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
+import update from 'react-addons-update';
 
 
 /*
@@ -42,9 +43,8 @@ import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './act
 function talents(state = {}, action) {
   switch (action.type) {
   case ADD_PEOPLE:
-    let tmp = {};
-    tmp[action.id] = action.info;
-    return Object.assign({}, state, tmp);
+    let newState = update(state, {[action.id]: {$set: action.info}});
+    return newState;
   default:
     return state;
   }
@@ -53,13 +53,14 @@ function talents(state = {}, action) {
 function repotalentmap(state = {}, action) {
   switch (action.type) {
   case ADD_REPO_PEOPLE_MAP:
-    let tmp = {};
+    let newState;
     if (Object.keys(state).includes(action.repo.toString())) {
-      tmp[action.repo] = [...state[action.repo], action.id];
-    } else {
-      tmp[action.repo] = [action.id];
+      newState = update(state, {[action.repo]: {$push: [action.id]}});
     }
-    return Object.assign({}, state, tmp);
+    else {
+      newState = update(state, {[action.repo]: {$set: [action.id]}});
+    }
+    return newState;
   default:
     return state;
   }
@@ -68,9 +69,8 @@ function repotalentmap(state = {}, action) {
 function repos(state = {}, action) {
   switch (action.type) {
   case ADD_REPO:
-    let tmp = {};
-    tmp[action.id] = action.json;
-    return Object.assign({}, state, tmp);
+    let newState = update(state, {[action.id]: {$set: action.json}});
+    return newState;
   default:
     return state;
   }
@@ -79,13 +79,13 @@ function repos(state = {}, action) {
 function keyrepomap(state = {}, action) {
   switch (action.type) {
   case ADD_REPO_KEY_MAP:
-    let tmp = {};
+    let newState;
     if (Object.keys(state).includes(action.key)) {
-      tmp[action.key] = [...state[action.key], action.id];
+      newState = update(state, {[action.key]: {$push: [action.id]}});
     } else {
-      tmp[action.key] = [action.id];
+      newState = update(state, {[action.key]: {$set: [action.id]}});
     }
-    return Object.assign({}, state, tmp);
+    return newState;
   default:
     return state;
   }

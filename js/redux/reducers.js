@@ -39,11 +39,15 @@ import update from 'react-addons-update';
     }
   }
 */
+// for none UI re-rendering states
+// modify their reference instead of making a new copy
+// which will not cause calling state.publish()
+// only leave repo-talent map/changing keys to re-rendering
 
 function talents(state = {}, action) {
   switch (action.type) {
   case ADD_PEOPLE:
-    let newState = update(state, {[action.id]: {$set: action.info}});
+    let newState = Object.assign(state, {[action.id]: action.info});
     return newState;
   default:
     return state;
@@ -68,7 +72,7 @@ function repotalentmap(state = {}, action) {
 function repos(state = {}, action) {
   switch (action.type) {
   case ADD_REPO:
-    let newState = update(state, {[action.id]: {$set: action.json}});
+    let newState = Object.assign(state, {[action.id]: action.json});
     return newState;
   default:
     return state;
@@ -80,11 +84,11 @@ function keyrepomap(state = {}, action) {
   case ADD_REPO_KEY_MAP:
     let newState;
     if (Object.keys(state).includes(action.key)) {
-      newState = update(state, {[action.key]: {$push: [action.id]}});
+      newState = {[action.key]: [...state[action.key], action.id]};
     } else {
-      newState = update(state, {[action.key]: {$set: [action.id]}});
+      newState = {[action.key]: [action.id]};
     }
-    return newState;
+    return Object.assign(state, newState);
   default:
     return state;
   }

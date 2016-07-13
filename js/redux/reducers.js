@@ -56,8 +56,7 @@ function repotalentmap(state = {}, action) {
     let newState;
     if (Object.keys(state).includes(action.repo.toString())) {
       newState = update(state, {[action.repo]: {$push: [action.id]}});
-    }
-    else {
+    } else {
       newState = update(state, {[action.repo]: {$set: [action.id]}});
     }
     return newState;

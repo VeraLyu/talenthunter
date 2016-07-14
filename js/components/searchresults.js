@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import ResultItem from './searchresult';
 
 
 export class SearchResults extends Component {
@@ -8,10 +9,7 @@ export class SearchResults extends Component {
       <div>
       {
         this.props.talents.map((talent)=>(
-            <li>
-                <img src={talent.avatar_url}/>
-                <a href={talent.html_url}>{talent.id}</a>
-            </li>
+          <ResultItem key={talent.id} {...talent}/>
         ))
       }
       </div>

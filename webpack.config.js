@@ -15,12 +15,17 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /.js$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+                test: /\.scss$/,
+                loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass',
+                exclude: /node_modules/
             }
         ]
     },

@@ -12,8 +12,24 @@ const defaultURLParam = {
     },
     sort: 'stars',
     order: 'desc'
+  },
+  GG_LOC_API: {
+    key: urlconst.GG_API_KEY,
+    input: ''
   }
 };
+
+function formatURLWithParam(url, params) {
+  const formattedParams = Object.keys(params).map((key)=>{
+    return `${key}=${params[key]}`;
+  }).join('&');
+  return `${url}?${formattedParams}`;
+}
+
+export function getGGLocationURL(input) {
+  const URLParam = Object.assign({}, defaultURLParam.GG_LOC_API, {input: input});
+  return formatURLWithParam(urlconst.GG_LOC_API, URLParam);
+}
 
 export function formatSearchURL(params = {}, url) {
   const urls = urlconst; // Refering to the module to make it appear in scope

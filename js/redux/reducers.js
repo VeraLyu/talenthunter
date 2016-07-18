@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
 import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
+import {ADD_LOC_CANDIDATES} from './actions/location';
 import update from 'react-addons-update';
 
 
@@ -112,12 +113,24 @@ function keywords(state = [], action) {
   }
 }
 
+
+function locCandidates(state = [], action) {
+  switch (action.type) {
+  case ADD_LOC_CANDIDATES:
+    return action.candidates;
+  default:
+    return state;
+  }
+}
+
+
 const talentSearchApp = combineReducers({
   keywords,
   keyrepomap,
   repos,
   talents,
-  repotalentmap
+  repotalentmap,
+  locCandidates
 });
 
 export default talentSearchApp;

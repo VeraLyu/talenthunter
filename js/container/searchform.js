@@ -3,7 +3,9 @@ import {fetchGitPeople} from '../redux/actions/git';
 import React from 'react';
 import {Component} from 'react';
 import KeywordInput from './keywordinput';
-import {LocPicker} from '../components/locpicker';
+import LocPicker from './locpicker';
+
+import FormStyle from '../../scss/searchform.scss';
 
 
 class SearchForm extends Component {
@@ -17,21 +19,11 @@ class SearchForm extends Component {
     dispatch(fetchGitPeople(keys));
   }
   render() {
-    /* {
-                    return (
-            <form onSubmit={this.props.handleFormSubmit}>
-                <KeywordInput></KeywordInput>
-                <LocationSelector></LocationSelector>
-                <PlatformSelector></PlatformSelector>
-                <YearSelector></YearSelector>
-                <input type="submit">Search</input>
-            </form>
-        } */
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form className={FormStyle.Form} onSubmit={this.handleFormSubmit}>
         <LocPicker/>
         <KeywordInput/>
-        <input type="submit" value="Search"/>
+        <input className={FormStyle.SearchButton} type="submit" value="Search"/>
       </form>
     );
   }

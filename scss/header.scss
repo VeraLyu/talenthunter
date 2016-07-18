@@ -1,5 +1,12 @@
 .header {
+	width: 30%;
 	img {
-		float: left;
+		max-width: 100%;
 	}
+	h3 {
+		text-align: center;
+		font-family: monospace;
+		color: grey;
+	}
+	margin: auto;
 }

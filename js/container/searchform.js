@@ -3,6 +3,7 @@ import {fetchGitPeople} from '../redux/actions/git';
 import React from 'react';
 import {Component} from 'react';
 import KeywordInput from './keywordinput';
+import {LocPicker} from '../components/locpicker';
 
 
 class SearchForm extends Component {
@@ -28,6 +29,7 @@ class SearchForm extends Component {
         } */
     return (
       <form onSubmit={this.handleFormSubmit}>
+        <LocPicker/>
         <KeywordInput/>
         <input type="submit" value="Search"/>
       </form>

@@ -1,6 +1,8 @@
 import {getGGLocationURL} from '../../helper/param';
 
 export const ADD_LOC_CANDIDATES = 'ADD_LOC_CANDIDATES';
+export const SELECT_CANDIDATE = 'SELECT_CANDIDATE';
+
 
 export function addLocationCandidate(locations) {
   return {
@@ -24,4 +26,11 @@ export function fetchLocation(locHint) {
 
 export function addLocation() {
   return null;
+}
+
+export function chooseLocCandidate(index) {
+  return {
+    type: SELECT_CANDIDATE,
+    index
+  };
 }

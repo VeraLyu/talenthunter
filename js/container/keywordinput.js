@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import {addKeyword} from '../redux/actions/keywords';
 
 
-const mapStateToProps = (state) => ({
-  keywords: state.keywords
+const mapStateToProps = ((state) => {
+  return {
+    keywords: state.keywords
+  };
 });
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

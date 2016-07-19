@@ -37,7 +37,8 @@ import update from 'react-addons-update';
     },
     repotalentmap: {
 
-    }
+    },
+    locCandidates: [],
   }
 */
 // for none UI re-rendering states

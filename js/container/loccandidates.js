@@ -14,7 +14,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   dispatchSelectChange: function (item) {
     dispatch(chooseLocCandidate(item.id));
-    item.querySelector('input').focus();
+    window.setTimeout(()=>{
+      item.querySelector('input').focus();
+    }, 0);
   }
 });
 

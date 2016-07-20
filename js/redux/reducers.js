@@ -118,6 +118,7 @@ function keywords(state = [], action) {
 function locCandidates(state = {candidates: [], selected: ''}, action) {
   switch (action.type) {
   case ADD_LOC_CANDIDATES:
+    update(state, {selected: {$set: ''}});
     return update(state, {candidates: {$set: action.candidates}});
   case SELECT_CANDIDATE:
     return update(state, {selected: {$set: action.index}});

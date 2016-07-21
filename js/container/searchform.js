@@ -28,7 +28,7 @@ class SearchForm extends Component {
             <Col xs={4}>
               <LocPicker/>
             </Col>
-            <Col xs={6}>
+            <Col xs={4}>
               <KeywordInput/>
             </Col>
             <Col xs={2}>

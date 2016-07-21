@@ -1,4 +1,13 @@
+@import "common";
+
 .Form {
+	background-color: #4C862F;
+	padding-top: 50px;
+	position: fixed;
+	bottom: 0;
+	top: 150px;
+	left: 0;
+	right: 0;
 	.SearchButton {
 		display: block;
 	}

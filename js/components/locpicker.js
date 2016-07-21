@@ -4,6 +4,8 @@ import FaMapMarker from 'react-icons/lib/fa/map-marker';
 
 import LocCandidates from '../container/loccandidates';
 
+import Style from '../../scss/locpicker.scss';
+
 
 export class LocPicker extends Component {
   constructor(props) {
@@ -24,11 +26,15 @@ export class LocPicker extends Component {
 
   render() {
     return (
-      <div>
-          <span>
-            <FaMapMarker/>
-            <input type="text" size="30" onKeyDown={this.handleKey}
-            onChange={this.props.completeLoc}/>
+      <div className={Style.LocPicker}>
+        <span className={Style.hintInput}>
+            <FaMapMarker color="#A2A2A2"/>
+            <span className={Style.rawInput}>
+              <input type="text" onKeyDown={this.handleKey}
+              onChange={this.props.completeLoc}
+              placeholder="Location"
+              />
+            </span>
           </span>
           <LocCandidates/>
       </div>

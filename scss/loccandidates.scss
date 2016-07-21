@@ -1,6 +1,17 @@
+@import "common";
+
 .LocCandidates {
 	list-style-type: none;
-	input {
-		//display: none;
+	padding-left: 0;
+	margin-left: 20px;
+	background-color: rgba(94, 120, 125, 0.85);
+	li {
+		:hover {
+			cursor: pointer;
+			color: #ffffff;
+		}
+		input {
+			display: none;
+		}
 	}
 }

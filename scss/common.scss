@@ -1,4 +1,10 @@
 * {
-	font-size: 16px;
-	line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+input:focus {
+	outline: none;
+    border: 2px solid #5CD6D6;
+    box-shadow: 2px #5CD6D6;
 }

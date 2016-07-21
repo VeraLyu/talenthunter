@@ -1,24 +1,26 @@
 @import "common";
-
-
 .LocPicker {
-	.hintInput {
-		padding-left: 5px;
-		display: block;
-		background-color: #ffffff;
-		overflow: hidden;
-		svg {
-			float: left;
-		}
-		.rawInput {
-			overflow: hidden;
-			padding-left: 10px;
-			display: block;
-			input {
-				border-style: none;
-				width: 100%;
-			}
-		}
-
-	}
+    .hintInput {
+        padding-left: 5px;
+        display: block;
+        background-color: #ffffff;
+        overflow: hidden;
+        svg {
+            float: left;
+        }
+        .rawInput {
+            overflow: hidden;
+            padding-left: 10px;
+            display: block;
+            input {
+                border-style: none;
+                width: 100%;
+            }
+            input:focus {
+                outline: none;
+                border: 2px solid #5CD6D6;
+                box-shadow: 2px #5CD6D6;
+            }
+        }
+    }
 }

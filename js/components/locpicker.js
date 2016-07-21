@@ -28,7 +28,7 @@ export class LocPicker extends Component {
     return (
       <div className={Style.LocPicker}>
         <span className={Style.hintInput}>
-            <FaMapMarker color="#A2A2A2"/>
+            <FaMapMarker size={23} color="#A2A2A2"/>
             <span className={Style.rawInput}>
               <input type="text" onKeyDown={this.handleKey}
               onChange={this.props.completeLoc}

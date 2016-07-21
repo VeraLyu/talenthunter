@@ -1,9 +1,11 @@
 import {connect} from 'react-redux';
-import {fetchGitPeople} from '../redux/actions/git';
 import React from 'react';
 import {Component} from 'react';
+import {Grid, Row, Col} from 'react-bootstrap';
+
 import KeywordInput from './keywordinput';
 import LocPicker from './locpicker';
+import {fetchGitPeople} from '../redux/actions/git';
 
 import FormStyle from '../../scss/searchform.scss';
 
@@ -21,9 +23,19 @@ class SearchForm extends Component {
   render() {
     return (
       <form className={FormStyle.Form} onSubmit={this.handleFormSubmit}>
-        <LocPicker/>
-        <KeywordInput/>
-        <input className={FormStyle.SearchButton} type="submit" value="Search"/>
+        <Grid>
+          <Row>
+            <Col xs={4}>
+              <LocPicker/>
+            </Col>
+            <Col xs={6}>
+              <KeywordInput/>
+            </Col>
+            <Col xs={2}>
+            <input className={FormStyle.SearchButton} type="submit" value="Search"/>
+            </Col>
+          </Row>
+        </Grid>
       </form>
     );
   }

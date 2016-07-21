@@ -27,7 +27,7 @@ export class LocPicker extends Component {
       <div>
           <span>
             <FaMapMarker/>
-            <input type="text" onKeyDown={this.handleKey}
+            <input type="text" size="30" onKeyDown={this.handleKey}
             onChange={this.props.completeLoc}/>
           </span>
           <LocCandidates/>

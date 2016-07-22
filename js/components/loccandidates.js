@@ -34,7 +34,7 @@ class LocCandidates extends Component {
 
   render() {
     return (
-      <ul className={`${Styles.LocCandidates}`}>
+      <ul className={`location ${Styles.LocCandidates}`}>
         {this.props.loc.map((loc)=>(
             <li ref={(ref)=>{
               if (loc.id === this.props.selected) {

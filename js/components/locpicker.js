@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import FaMapMarker from 'react-icons/lib/fa/map-marker';
 
 import LocCandidates from '../container/loccandidates';
@@ -12,10 +13,12 @@ export class LocPicker extends Component {
     super(props);
     this.handleKey = this.handleKey.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.inputVal = '';
   }
 
   handleKey(event) {
+    this.candidate.style.display = 'block';
     if (event.keyCode === 13) {
       this.props.addLocation(event.target.value);
     } else if (event.keyCode === 40) {
@@ -32,22 +35,42 @@ export class LocPicker extends Component {
     event.preventDefault();
   }
 
+  handleBlur(event) {
+    let nodes = document.querySelectorAll(':hover');
+    let active = false;
+    Array.prototype.forEach.call(nodes,
+      (node) => {
+        if (node.classList.contains('location')) {
+          active = true;
+        }
+      }
+    );
+    if (!active) {
+      this.candidate.style.display = 'none';
+    }
+    event.preventDefault();
+  }
+
   render() {
     if (this.props.selection !== null) {
       this.inputVal = this.props.selection.value;
     }
     return (
-      <div className={Style.LocPicker}>
+      <div className={Style.LocPicker} onBlur={this.handleBlur}>
         <span className={Style.hintInput}>
             <FaMapMarker size={23} color="#A2A2A2"/>
             <span className={Style.rawInput}>
-              <input type="text" onKeyDown={this.handleKey}
+              <input className="location" type="text" onKeyDown={this.handleKey}
               onChange={this.handleInput}
               placeholder="Location"
               value={this.inputVal}/>
             </span>
           </span>
-          <LocCandidates/>
+          <LocCandidates
+            ref={(ref)=>{
+              this.candidate = ReactDOM.findDOMNode(ref);
+            }}
+          />
       </div>
     );
   }

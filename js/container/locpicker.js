@@ -6,19 +6,20 @@ import {addLocation, fetchLocation, chooseLocCandidate} from '../redux/actions/l
 const mapStateToProps = (state) => {
   if (state.locCandidates.candidates.length > 0) {
     return {
-      firstChild: state.locCandidates.candidates[0].id
+      firstChild: state.locCandidates.candidates[0].id,
+      selection: document.getElementById(state.locCandidates.selected + '_input')
     };
   }
   return {
-    firstChild: null
+    firstChild: null,
+    selection: null
   };
 };
 
 const mapDispatchToProps = ((dispatch) => {
   return {
-    completeLoc: (event)=> {
-      dispatch(fetchLocation(event.target.value));
-      event.preventDefault();
+    fetchLocation: (hint)=> {
+      dispatch(fetchLocation(hint));
     },
     addLocation: (hint)=> {
       dispatch(addLocation(hint));

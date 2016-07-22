@@ -1,11 +1,11 @@
 import React from 'react';
 import {Component} from 'react';
+import {Provider} from 'react-redux';
 
 import SearchForm from '../container/searchform';
 import SearchResults from '../container/searchresults';
-import Header from './header';
-import Footer from './footer';
 
+import store from '../redux/store';
 
 export class App extends Component {
   constructor(props) {
@@ -15,12 +15,12 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header/>
-        <SearchForm hotTopic={this.state.hotTopic}/>
-        <SearchResults/>
-        <Footer/>
-      </div>
+      <Provider store={store}>
+        <div>
+          <SearchForm hotTopic={this.state.hotTopic}/>
+          <SearchResults/>
+        </div>
+      </Provider>
     );
   }
 }

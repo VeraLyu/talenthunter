@@ -8,10 +8,15 @@
 	li {
 		:hover {
 			cursor: pointer;
-			color: #ffffff;
+			color: #fefefe;
 		}
 		input {
-			display: none;
+			opacity: 0;
+			float: left;
+		}
+		input:focus+label {
+			cursor: pointer;
+			color: #ffffff;
 		}
 		label {
 			display: block;

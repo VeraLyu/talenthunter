@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import {render} from 'react-dom';
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
 
 
@@ -28,9 +28,9 @@ Framework.propTypes = {
 
 render((
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
       <Route path="/talent" component={Framework}>
-        <Route path="/" component={App}/>
+        <IndexRoute component={App}/>
         <Route path="result" component={Results}/>
       </Route>
     </Router>

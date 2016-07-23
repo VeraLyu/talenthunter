@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 import {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
-import {Link} from 'react-router';
+import {browserHistory} from 'react-router';
 
 import KeywordInput from './keywordinput';
 import LocPicker from './locpicker';
@@ -20,6 +20,7 @@ class SearchForm extends Component {
     event.preventDefault();
     const {dispatch, keys} = this.props;
     dispatch(fetchGitPeople(keys));
+    browserHistory.push('/talent/result');
   }
   render() {
     return (
@@ -34,7 +35,6 @@ class SearchForm extends Component {
             </Col>
             <Col xs={2}>
               <input className={FormStyle.SearchButton} type="submit" value="Search"/>
-              <Link to="/talent/result">This is a link</Link>
             </Col>
           </Row>
         </Grid>

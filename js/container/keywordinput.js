@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     handleInputChange: (event)=> {
       if (event.keyCode === 13) {
         dispatch(addKeyword(event.target.value));
+        event.target.value = '';
         event.preventDefault();
       }
     }

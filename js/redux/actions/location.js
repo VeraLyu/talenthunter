@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import {getGGLocationURL} from '../../helper/param';
 
 export const ADD_LOC_CANDIDATES = 'ADD_LOC_CANDIDATES';

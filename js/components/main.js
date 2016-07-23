@@ -1,13 +1,15 @@
 import React from 'react';
 import {Component} from 'react';
 import {render} from 'react-dom';
-import {Router, Route, browserHistory, IndexRoute} from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
 
 
 import {App} from './app';
 import Header from './header';
 import Footer from './footer';
 import {Results} from './result';
+import store from '../redux/store';
 
 class Framework extends Component {
   render() {
@@ -25,11 +27,14 @@ Framework.propTypes = {
 };
 
 render((
-  <Router history={browserHistory}>
-    <Route path="/talent" component={Framework}>
-      <IndexRoute component={App}/>
-      <Route path="result" component={Results}/>
-    </Route>
-  </Router>),
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/talent" component={Framework}>
+        <Route path="/" component={App}/>
+        <Route path="result" component={Results}/>
+      </Route>
+    </Router>
+  </Provider>
+  ),
   document.getElementById('talent')
 );

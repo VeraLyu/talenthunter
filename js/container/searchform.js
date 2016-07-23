@@ -46,7 +46,7 @@ class SearchForm extends Component {
 
 SearchForm.propTypes = {
   keys: React.PropTypes.arrayOf(React.PropTypes.string),
-  dispatch: React.PropTypes.func.required
+  dispatch: React.PropTypes.func
 };
 
 const mapStateToProps = (state) => ({

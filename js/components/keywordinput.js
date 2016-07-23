@@ -14,7 +14,7 @@ export class KeywordInput extends Component {
             value={this.props.initValue}/>
         </div>
         {this.props.keywords.map(
-          (keyword)=>(<button value={keyword}>{keyword}</button>))}
+          (keyword)=>(<button key={keyword} value={keyword}>{keyword}</button>))}
       </div>
       );
   }
@@ -23,7 +23,6 @@ export class KeywordInput extends Component {
 KeywordInput.propTypes = {
   keywords: React.PropTypes.arrayOf(React.PropTypes.string),
   value: React.PropTypes.string,
-  onKeyDown: React.PropTypes.func.isRequired,
   handleInputChange: React.PropTypes.func.isRequired,
   initValue: React.PropTypes.string
 };

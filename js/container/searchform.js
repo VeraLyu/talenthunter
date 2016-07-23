@@ -33,7 +33,6 @@ class SearchForm extends Component {
             </Col>
             <Col xs={2}>
               <input className={FormStyle.SearchButton} type="submit" value="Search"/>
-              <a href="/talent/my">This is a link</a>
             </Col>
           </Row>
         </Grid>

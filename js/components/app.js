@@ -3,7 +3,6 @@ import {Component} from 'react';
 import {Provider} from 'react-redux';
 
 import SearchForm from '../container/searchform';
-import SearchResults from '../container/searchresults';
 
 import store from '../redux/store';
 
@@ -18,7 +17,6 @@ export class App extends Component {
       <Provider store={store}>
         <div>
           <SearchForm hotTopic={this.state.hotTopic}/>
-          <SearchResults/>
         </div>
       </Provider>
     );

@@ -7,6 +7,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {App} from './app';
 import Header from './header';
 import Footer from './footer';
+import {Results} from './result';
 
 class Framework extends Component {
   render() {
@@ -23,19 +24,11 @@ Framework.propTypes = {
   children: React.PropTypes.object
 };
 
-const tmp = () => (
-  <ul>
-    <li>list 1</li>
-    <li>list 2</li>
-    <li>list 3</li>
-  </ul>
-);
-
 render((
   <Router history={browserHistory}>
     <Route path="/talent" component={Framework}>
       <IndexRoute component={App}/>
-      <Route path="my" component={tmp}/>
+      <Route path="result" component={Results}/>
     </Route>
   </Router>),
   document.getElementById('talent')

@@ -2,16 +2,20 @@ import React from 'react';
 import {Component} from 'react';
 
 
+import Styles from '../../scss/keywordinput.scss';
+
 export class KeywordInput extends Component {
   render() {
     return (
-      <span>
-        <label htmlFor="key_word">Keywords</label>
+      <div className={Styles.keyword}>
+        <div>
+          <label htmlFor="key_word">Keywords</label>
+          <input id="key_word" type="text" onKeyDown={this.props.handleInputChange}
+            value={this.props.initValue}/>
+        </div>
         {this.props.keywords.map(
           (keyword)=>(<button value={keyword}>{keyword}</button>))}
-        <input id="key_word" type="text" onKeyDown={this.props.handleInputChange}
-          value={this.props.initValue}/>
-      </span>
+      </div>
       );
   }
 }

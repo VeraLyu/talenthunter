@@ -3,6 +3,7 @@ export const USER_PER_REPO = 2;
 export const ADDR_CANDIDATES_CNT = 5;
 
 export const GITHUB_REPO = 'https://api.github.com/search/repositories';
+export const GITHUB_USER = 'https://api.github.com/users/';
 export const GITHUB_LANGUAGE = '';
 
 export const GG_LOC_API = '/maps/api/place/autocomplete/json';

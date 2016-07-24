@@ -1,4 +1,5 @@
-import {formatSearchURL, formatListUsrURL} from '../../helper/param';
+import {formatSearchURL, formatListUsrURL, formatUsrURL} from '../../helper/param';
+import fetch from 'isomorphic-fetch';
 
 
 export const ADD_REPO = 'ADD_REPO';
@@ -65,12 +66,31 @@ export function recieveGitRepo(json, key) {
 export function fetchRepoPeople(repo) {
   return function (dispatch) {
     let url = formatListUsrURL(repo);
+/*
     fetch(url)
       .then(result=>result.json())
       .then((talentList)=>{
         talentList.forEach((item)=>{
-          dispatch(updatePeople(item.id, item));
-          dispatch(updateRepoPeopleMap(repo.id, item.id));
+          let userUrl = formatUsrURL(item.login);
+          fetch(userUrl).then(result=>result.json()).then((userinfo)=>{
+            userinfo.contribution = item.contributions;
+            dispatch(updatePeople(userinfo.id, userinfo));
+            dispatch(updateRepoPeopleMap(repo.id, userinfo.id));
+          });
+        });
+      });
+      */
+    fetch(url)
+      .then(result=>result.json())
+      .then((talentList)=>{
+        let tmpTalentList = talentList.slice(0,2);
+        tmpTalentList.forEach((item)=>{
+          let userUrl = formatUsrURL(item.login);
+          fetch(userUrl).then(result=>result.json()).then((userinfo)=>{
+            userinfo.contribution = item.contributions;
+            dispatch(updatePeople(userinfo.id, userinfo));
+            dispatch(updateRepoPeopleMap(repo.id, userinfo.id));
+          });
         });
       });
   };
@@ -84,7 +104,14 @@ export function fetchGitPeople(repos) {
       fetch(param)
         .then(result=>result.json())
         .then((json)=>{
+          /*
           json.items.forEach((item)=>{
+            dispatch(recieveGitRepo(item, key));
+            dispatch(fetchRepoPeople(item));
+          });
+*/
+          let tmpItem = json.items.slice(0,2);
+          tmpItem.forEach((item)=>{
             dispatch(recieveGitRepo(item, key));
             dispatch(fetchRepoPeople(item));
           });

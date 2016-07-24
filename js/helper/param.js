@@ -31,6 +31,10 @@ export function getGGLocationURL(input) {
   return formatURLWithParam(urlconst.GG_LOC_API, URLParam);
 }
 
+export function formatUsrURL(userID) {
+  return `${urlconst.GITHUB_USER}${userID}`;
+}
+
 export function formatSearchURL(params = {}, url) {
   const urls = urlconst; // Refering to the module to make it appear in scope
   const URL = urls[url];

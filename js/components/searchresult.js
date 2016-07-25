@@ -1,6 +1,5 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
-//import FaEnvelope from 'react-icons/lib/fa/envelope';
 import FaGroup from 'react-icons/lib/fa/group';
 import FaPieChart from 'react-icons/lib/fa/pie-chart';
 import FaMale from 'react-icons/lib/fa/male';

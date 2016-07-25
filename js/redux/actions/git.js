@@ -83,7 +83,7 @@ export function fetchRepoPeople(repo) {
     fetch(url)
       .then(result=>result.json())
       .then((talentList)=>{
-        let tmpTalentList = talentList.slice(0,2);
+        let tmpTalentList = talentList.slice(0, 2);
         tmpTalentList.forEach((item)=>{
           let userUrl = formatUsrURL(item.login);
           fetch(userUrl).then(result=>result.json()).then((userinfo)=>{
@@ -110,7 +110,7 @@ export function fetchGitPeople(repos) {
             dispatch(fetchRepoPeople(item));
           });
 */
-          let tmpItem = json.items.slice(0,2);
+          let tmpItem = json.items.slice(0, 2);
           tmpItem.forEach((item)=>{
             dispatch(recieveGitRepo(item, key));
             dispatch(fetchRepoPeople(item));

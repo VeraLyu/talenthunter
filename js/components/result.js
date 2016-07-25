@@ -23,7 +23,7 @@ export class Results extends Component {
               <KeywordInput/>
               <input className={FormStyle.SearchButton} type="submit" value="Search"/>
             </Col>
-            <Col xs={6}>
+            <Col xs={8}>
               <SearchResults/>
             </Col>
           </Row>

@@ -14,7 +14,7 @@ export class LocPicker extends Component {
     this.handleKey = this.handleKey.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.inputVal = '';
+    this.state = {};
   }
 
   handleKey(event) {
@@ -30,8 +30,11 @@ export class LocPicker extends Component {
   }
 
   handleInput(event) {
-    this.inputVal = event.target.value;
-    this.props.fetchLocation(this.inputVal);
+    this.setState({input: event.target.value});
+    this.props.fetchLocation(event.target.value);
+    if (this.props.selection !== null) {
+      this.props.chooseLocCandidate(null);
+    }
     event.preventDefault();
   }
 
@@ -52,8 +55,11 @@ export class LocPicker extends Component {
   }
 
   render() {
+    let inputVal;
     if (this.props.selection !== null) {
-      this.inputVal = this.props.selection.value;
+      inputVal = this.props.selection.value;
+    } else {
+      inputVal = this.state.input;
     }
     return (
       <div className={Style.LocPicker} onBlur={this.handleBlur}>
@@ -63,7 +69,7 @@ export class LocPicker extends Component {
               <input className="location" type="text" onKeyDown={this.handleKey}
               onChange={this.handleInput}
               placeholder="Location"
-              value={this.inputVal}/>
+              value={inputVal}/>
             </span>
           </span>
           <LocCandidates

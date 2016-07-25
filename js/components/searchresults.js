@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import ResultItem from './searchresult';
+import ResultItem from '../container/searchresult';
 
 
 export class SearchResults extends Component {

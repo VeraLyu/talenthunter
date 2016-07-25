@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
 import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
 import {ADD_LOC_CANDIDATES, SELECT_CANDIDATE} from './actions/location';
+import {ADD_CANDIDATE, REMOVE_CANDIDATE} from './actions/candidates';
 import update from 'react-addons-update';
 
 
@@ -39,12 +40,32 @@ import update from 'react-addons-update';
 
     },
     locCandidates: [],
+    candidates: []
   }
 */
+
 // for none UI re-rendering states
 // modify their reference instead of making a new copy
 // which will not cause calling state.publish()
 // only leave repo-talent map/changing keys to re-rendering
+
+function candidates(state = [], action) {
+  switch (action.type) {
+  case ADD_CANDIDATE:
+    if (state.includes(action.id)) {
+      return state;
+    }
+    return update(state, {$push: [action.id]});
+  case REMOVE_CANDIDATE:
+    let index = state.indexOf(action.id);
+    if (index !== -1) {
+      return update(state, {$splice: [[index, 1]]});
+    }
+    return state;
+  default:
+    return state;
+  }
+}
 
 function talents(state = {}, action) {
   switch (action.type) {
@@ -134,7 +155,8 @@ const talentSearchApp = combineReducers({
   repos,
   talents,
   repotalentmap,
-  locCandidates
+  locCandidates,
+  candidates
 });
 
 export default talentSearchApp;

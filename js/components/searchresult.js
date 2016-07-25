@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Col} from 'react-bootstrap';
 import FaGroup from 'react-icons/lib/fa/group';
 import FaPieChart from 'react-icons/lib/fa/pie-chart';
@@ -23,51 +23,65 @@ let myProp = {
 };
 */
 
-const ResultItem = (props) => {
-  let myClass = Style.nameCard;
-  let email = null;
-  if (props.hireable) {
-    myClass = `${myClass} ${Style.hireable}`;
+class ResultItem extends Component {
+  constructor(props) {
+    super(props);
+    this.changeCandidates = this.changeCandidates.bind(this);
   }
-  if (props.email) {
-    email =
-      (<div className={Style.contact}>
-        <span>{props.email}</span>
-      </div>);
+  changeCandidates(event) {
+    if (event.target.checked) {
+      this.props.addCandidate(event.target.value);
+    } else {
+      this.props.removeCandidate(event.target.value);
+    }
   }
-  return (
-    <Col xs={5} className={myClass}>
-      <input className={Style.check} type="checkbox" value={props.id}/>
-      <div className={Style.aside}>
-        <img src={props.avatar_url}/>
-        <a href={props.html_url}>{props.name}</a>
-        <p><FaGroup size={16} color="#A2A2A2"/>{props.company}</p>
-      </div>
-      <div className={Style.information}>
-        <ul >
-          <li>
-            <p>{props.contributions}</p>
-            <FaPieChart size={30} color="#A2A2A2"/>
-            <p className={Style.tip}>Contributions</p>
-          </li>
-          <li>
-            <p>{props.followers}</p>
-            <FaMale size={30} color="#A2A2A2"/>
-            <p className={Style.tip}>Followers</p>
-          </li>
-          <li>
-            <p>{props.public_repos}</p>
-            <FaFolderOpenO size={30} color="#A2A2A2"/>
-            <p className={Style.tip}>Repos</p>
-          </li>
-        </ul>
-        <div className={Style.clearElement}/>
-        {email}
-        <div>{props.hireable}</div>
-      </div>
-    </Col>
+  render() {
+    let myClass = Style.nameCard;
+    let email = null;
+    if (this.props.hireable) {
+      myClass = `${myClass} ${Style.hireable}`;
+    }
+    if (this.props.email) {
+      email =
+        (<div className={Style.contact}>
+          <span>{this.props.email}</span>
+        </div>);
+    }
+    return (
+      <Col xs={5} className={myClass}>
+        <input className={Style.check} type="checkbox"
+        value={this.props.id} onChange={this.changeCandidates}/>
+        <div className={Style.aside}>
+          <img src={this.props.avatar_url}/>
+          <a href={this.props.html_url}>{this.props.name}</a>
+          <p><FaGroup size={16} color="#A2A2A2"/>{this.props.company}</p>
+        </div>
+        <div className={Style.information}>
+          <ul >
+            <li>
+              <p>{this.props.contributions}</p>
+              <FaPieChart size={30} color="#A2A2A2"/>
+              <p className={Style.tip}>Contributions</p>
+            </li>
+            <li>
+              <p>{this.props.followers}</p>
+              <FaMale size={30} color="#A2A2A2"/>
+              <p className={Style.tip}>Followers</p>
+            </li>
+            <li>
+              <p>{this.props.public_repos}</p>
+              <FaFolderOpenO size={30} color="#A2A2A2"/>
+              <p className={Style.tip}>Repos</p>
+            </li>
+          </ul>
+          <div className={Style.clearElement}/>
+          {email}
+          <div>{this.props.hireable}</div>
+        </div>
+      </Col>
     );
-};
+  }
+}
 
 ResultItem.propTypes = {
   avatar_url: React.PropTypes.string,
@@ -79,7 +93,9 @@ ResultItem.propTypes = {
   company: React.PropTypes.string,
   contributions: React.PropTypes.number,
   followers: React.PropTypes.number,
-  public_repos: React.PropTypes.number
+  public_repos: React.PropTypes.number,
+  addCandidate: React.PropTypes.function,
+  removeCandidate: React.PropTypes.function
 };
 
 export default ResultItem;

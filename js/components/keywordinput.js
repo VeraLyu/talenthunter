@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import {Button} from 'react-bootstrap';
 
 
 import Styles from '../../scss/keywordinput.scss';
@@ -14,7 +15,7 @@ export class KeywordInput extends Component {
             value={this.props.initValue}/>
         </div>
         {this.props.keywords.map(
-          (keyword)=>(<button key={keyword} value={keyword}>{keyword}</button>))}
+          (keyword)=>(<Button bsStyle="info" key={keyword} value={keyword}>{keyword}</Button>))}
       </div>
       );
   }

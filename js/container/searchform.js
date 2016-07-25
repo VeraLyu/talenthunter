@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import {Component} from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Button} from 'react-bootstrap';
 import {browserHistory} from 'react-router';
 
 import KeywordInput from './keywordinput';
@@ -34,7 +34,8 @@ class SearchForm extends Component {
               <KeywordInput/>
             </Col>
             <Col xs={2}>
-              <input className={FormStyle.SearchButton} type="submit" value="Search"/>
+              <Button bsStyle="primary" className={FormStyle.SearchButton}
+              type="submit">Search</Button>
             </Col>
           </Row>
         </Grid>

@@ -23,6 +23,11 @@ module.exports = {
                 }
             },
             {
+                test: /\.css$/,
+                loader: 'style!css',
+                exclude: /node_modules/
+           },
+           {
                 test: /\.scss$/,
                 loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass',
                 exclude: /node_modules/

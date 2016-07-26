@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Nav, NavItem, Modal, Button} from 'react-bootstrap';
+import Multistep from '../../lib/multistep';
 
 import Style from '../../scss/nav.scss';
 
@@ -22,6 +23,12 @@ class AppNav extends Component {
   render() {
     let candidatesJSX;
     let invitationJSX;
+    const steps = [
+      {name: 'StepOne', component: <p/>},
+      {name: 'StepTwo', component: <p/>},
+      {name: 'StepThree', component: <p/>},
+      {name: 'StepFour', component: <p/>}
+    ];
     if (this.props.candidatesCnt === 0) {
       candidatesJSX = (<NavItem eventKey={1} disabled>Candidates</NavItem>);
     } else {
@@ -44,7 +51,7 @@ class AppNav extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h4>Text in a modal</h4>
+              <Multistep showNavigation={true} steps={steps}/>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.close}>Close</Button>

@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import {App} from './app';
 import Header from './header';
 import Footer from './footer';
+import Nav from '../container/nav';
 import {Results} from './result';
 import store from '../redux/store';
 
@@ -16,6 +17,7 @@ class Framework extends Component {
     return (
       <div>
         <Header/>
+        <Nav/>
           {this.props.children}
         <Footer/>
       </div>);

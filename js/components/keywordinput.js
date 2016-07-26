@@ -1,12 +1,17 @@
 import React from 'react';
 import {Component} from 'react';
-import {Button} from 'react-bootstrap';
+
+import {Tags} from './tag';
 
 
 import Styles from '../../scss/keywordinput.scss';
 
 export class KeywordInput extends Component {
   render() {
+    let keys = this.props.keywords.reduce((result, cur)=>{
+      result[cur] = cur;
+      return result;
+    }, {});
     return (
       <div className={Styles.keyword}>
         <div>
@@ -14,8 +19,7 @@ export class KeywordInput extends Component {
           <input id="key_word" type="text" onKeyDown={this.props.handleInputChange}
             value={this.props.initValue}/>
         </div>
-        {this.props.keywords.map(
-          (keyword)=>(<Button bsStyle="info" key={keyword} value={keyword}>{keyword}</Button>))}
+        <Tags tagList={keys} deleteTag={this.props.handleKeyDelete}/>
       </div>
       );
   }
@@ -25,5 +29,6 @@ KeywordInput.propTypes = {
   keywords: React.PropTypes.arrayOf(React.PropTypes.string),
   value: React.PropTypes.string,
   handleInputChange: React.PropTypes.func.isRequired,
-  initValue: React.PropTypes.string
+  initValue: React.PropTypes.string,
+  handleKeyDelete: React.PropTypes.function
 };

@@ -1,7 +1,6 @@
 import {KeywordInput} from '../components/keywordinput';
 import {connect} from 'react-redux';
-import {addKeyword} from '../redux/actions/keywords';
-
+import {addKeyword, removeKeyword} from '../redux/actions/keywords';
 
 const mapStateToProps = ((state) => {
   return {
@@ -17,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
         event.target.value = '';
         event.preventDefault();
       }
+    },
+    handleKeyDelete: (key) => {
+      dispatch(removeKeyword(key));
     }
   };
 };

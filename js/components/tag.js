@@ -17,16 +17,13 @@ export class Tags extends Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.state = {tagList: this.props.tagList};
   }
   handleDelete(event) {
-    let tag = event.target.getAttribute('data-tagId');
-    delete this.state.tagList[tag];
+    let tag = event.currentTarget.getAttribute('data-tagId');
     this.props.deleteTag(tag); // Global handling for tag
-    this.setState(this.state); // local representation correction
   }
   render() {
-    let tagList = this.state.tagList;
+    let tagList = this.props.tagList;
     return (
       <div className={Style.tag}>
       {

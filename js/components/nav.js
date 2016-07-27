@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Nav, NavItem} from 'react-bootstrap';
 
-import {InvitationForm} from './invitationform';
+import InvitationForm from '../container/invitationform';
 
 import Style from '../../scss/nav.scss';
 
@@ -25,7 +25,7 @@ class AppNav extends Component {
   render() {
     let candidatesJSX;
     let invitationJSX;
-    let showModal = this.state.showModal ? (<InvitationForm show={true}/>): null;
+    let showModal = this.state.showModal ? (<InvitationForm show={true}/>) : null;
 
     if (this.props.candidatesCnt === 0) {
       candidatesJSX = (<NavItem eventKey={1} disabled>Candidates</NavItem>);

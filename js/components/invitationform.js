@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Modal} from 'react-bootstrap';
 
 import Multistep from '../../lib/multistep';
+import {Tags} from './tag';
 
 export class InvitationForm extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ export class InvitationForm extends Component {
 
   render() {
     const steps = [
-      {name: 'StepOne', component: <p/>},
+      {name: 'Candidates', component: <Tags tagList={this.props.candidates}
+        deleteTag={this.props.removeCandidate}/>},
       {name: 'StepTwo', component: <p/>},
       {name: 'StepThree', component: <p/>}
     ];
@@ -38,3 +40,9 @@ export class InvitationForm extends Component {
     );
   }
 }
+
+InvitationForm.propTypes = {
+  show: React.PropTypes.boolean,
+  candidates: React.PropTypes.object,
+  removeCandidate: React.PropTypes.function
+};

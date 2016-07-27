@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Nav, NavItem, Modal, Button} from 'react-bootstrap';
-import Multistep from '../../lib/multistep';
+import {Nav, NavItem} from 'react-bootstrap';
+
+import {InvitationForm} from './invitationform';
 
 import Style from '../../scss/nav.scss';
+
 
 class AppNav extends Component {
   constructor(props) {
@@ -23,12 +25,8 @@ class AppNav extends Component {
   render() {
     let candidatesJSX;
     let invitationJSX;
-    const steps = [
-      {name: 'StepOne', component: <p/>},
-      {name: 'StepTwo', component: <p/>},
-      {name: 'StepThree', component: <p/>},
-      {name: 'StepFour', component: <p/>}
-    ];
+    let showModal = this.state.showModal ? (<InvitationForm show={true}/>): null;
+
     if (this.props.candidatesCnt === 0) {
       candidatesJSX = (<NavItem eventKey={1} disabled>Candidates</NavItem>);
     } else {
@@ -46,17 +44,7 @@ class AppNav extends Component {
           {candidatesJSX}
           <NavItem eventKey={2} title="Item" href="/talent/jd">Job Descriptions</NavItem>
           {invitationJSX}
-          <Modal show={this.state.showModal} onHide={this.close}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Multistep showNavigation={true} steps={steps}/>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.close}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          {showModal}
       </Nav>
     );
   }

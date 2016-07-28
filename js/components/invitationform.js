@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal} from 'react-bootstrap';
+import {Modal, Button} from 'react-bootstrap';
 
 import Multistep from '../../lib/multistep';
 import {Tags} from './tag';
@@ -25,8 +25,8 @@ export class InvitationForm extends Component {
     const steps = [
       {name: 'Candidates', component: <Tags tagList={this.props.candidates}
         deleteTag={this.props.removeCandidate}/>},
-      {name: 'StepTwo', component: <p/>},
-      {name: 'StepThree', component: <p/>}
+      {name: 'Interview Time', component: <p/>},
+      {name: 'Job Description', component: <p/>}
     ];
     return (
       <Modal show={this.state.show} onHide={this.close}>
@@ -36,6 +36,12 @@ export class InvitationForm extends Component {
         <Modal.Body>
           <Multistep showNavigation={true} steps={steps}/>
         </Modal.Body>
+        <Modal.Body>
+          <Multistep showNavigation={true} steps={steps}/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button bsStyle="primary">Save changes</Button>
+        <Modal.Footer/>
       </Modal>
     );
   }

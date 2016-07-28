@@ -40,7 +40,12 @@ import update from 'react-addons-update';
 
     },
     locCandidates: [],
-    candidates: []
+    candidates: [],
+    activeInvitations: {
+      start: date1,
+      end: date2,
+      jdId: the_jd_id
+    }
   }
 */
 
@@ -48,6 +53,16 @@ import update from 'react-addons-update';
 // modify their reference instead of making a new copy
 // which will not cause calling state.publish()
 // only leave repo-talent map/changing keys to re-rendering
+function activeInvitations(state = {}, action) {
+  switch (action.type) {
+  case SEND_INVITATION:
+    let state = Object.assign({}, action);
+    delete state.type;
+    return state;
+  default:
+    return state;
+  }
+}
 
 function candidates(state = [], action) {
   switch (action.type) {

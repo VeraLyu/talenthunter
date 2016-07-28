@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import {ADD_KEYWORD, REMOVE_KEYWORD} from './actions/keywords';
+import {SEND_INVITATION} from './actions/invitation';
 import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
 import {ADD_LOC_CANDIDATES, SELECT_CANDIDATE} from './actions/location';
 import {ADD_CANDIDATE, REMOVE_CANDIDATE} from './actions/candidates';
@@ -56,9 +57,9 @@ import update from 'react-addons-update';
 function activeInvitations(state = {}, action) {
   switch (action.type) {
   case SEND_INVITATION:
-    let state = Object.assign({}, action);
-    delete state.type;
-    return state;
+    let newState = Object.assign({}, action);
+    delete newState.type;
+    return newState;
   default:
     return state;
   }
@@ -171,7 +172,8 @@ const talentSearchApp = combineReducers({
   talents,
   repotalentmap,
   locCandidates,
-  candidates
+  candidates,
+  activeInvitations
 });
 
 export default talentSearchApp;

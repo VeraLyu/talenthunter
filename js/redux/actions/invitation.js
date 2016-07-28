@@ -1,0 +1,2 @@
+export const SEND_INVITATION = 'SEND_INVITAION';
+

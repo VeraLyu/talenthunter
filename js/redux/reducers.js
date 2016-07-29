@@ -4,6 +4,8 @@ import {SEND_INVITATION} from './actions/invitation';
 import {ADD_REPO, ADD_REPO_KEY_MAP, ADD_PEOPLE, ADD_REPO_PEOPLE_MAP} from './actions/git';
 import {ADD_LOC_CANDIDATES, SELECT_CANDIDATE} from './actions/location';
 import {ADD_CANDIDATE, REMOVE_CANDIDATE} from './actions/candidates';
+import {ADD_JD, CLEAR_JD} from './actions/jds';
+
 import update from 'react-addons-update';
 
 
@@ -164,6 +166,17 @@ function locCandidates(state = {candidates: [], selected: ''}, action) {
   }
 }
 
+function jds(state = [], action) {
+  switch (action.type) {
+  case ADD_JD:
+    update(state, {$push: action.jd});
+    return state;
+  case CLEAR_JD:
+    return [];
+  default:
+    return state;
+  }
+}
 
 const talentSearchApp = combineReducers({
   keywords,
@@ -173,7 +186,8 @@ const talentSearchApp = combineReducers({
   repotalentmap,
   locCandidates,
   candidates,
-  activeInvitations
+  activeInvitations,
+  jds
 });
 
 export default talentSearchApp;

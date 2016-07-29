@@ -8,3 +8,5 @@ export const GITHUB_LANGUAGE = '';
 
 export const GG_LOC_API = '/maps/api/place/autocomplete/json';
 export const GG_API_KEY = 'AIzaSyAssz5DItjswMgGvJc18OHdVCbPKdMCq4U';
+
+export const JD_API = 'http://123.207.238.205:8000/jds/';

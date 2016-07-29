@@ -66,20 +66,6 @@ export function recieveGitRepo(json, key) {
 export function fetchRepoPeople(repo) {
   return function (dispatch) {
     let url = formatListUsrURL(repo);
-/*
-    fetch(url)
-      .then(result=>result.json())
-      .then((talentList)=>{
-        talentList.forEach((item)=>{
-          let userUrl = formatUsrURL(item.login);
-          fetch(userUrl).then(result=>result.json()).then((userinfo)=>{
-            userinfo.contribution = item.contributions;
-            dispatch(updatePeople(userinfo.id, userinfo));
-            dispatch(updateRepoPeopleMap(repo.id, userinfo.id));
-          });
-        });
-      });
-      */
     fetch(url)
       .then(result=>result.json())
       .then((talentList)=>{
